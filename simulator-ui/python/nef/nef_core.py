@@ -1104,9 +1104,16 @@ def expose_toplevel(o, nodes, expose_attr):
     """
     # -- if nodes looks like ['A', 'B', 'C']
     #    then we want B.expose, then A.expose
+<<<<<<< HEAD
     for parent_node in reversed(nodes[:-1]):
         name_in_parent = '%s.%s' % (
             o.node.name, o.getName())
+=======
+    print 'nodes', nodes
+    for parent_node in reversed(nodes[:-1]):
+        name_in_parent = '%s.%s' % (
+            parent_node.getName(), o.getName())
+>>>>>>> fa9761d... ENH: Network.connect indexes networks recursively
         expose_fn = getattr(parent_node, 'expose%s'%expose_attr)
         expose_fn(o, name_in_parent)
         o = getattr(parent_node,'get%s'%expose_attr)(name_in_parent)
