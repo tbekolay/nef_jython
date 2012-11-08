@@ -21,9 +21,10 @@ def test_params(net,p):
     if p['dimensions']<1: return 'Must have at least one dimension'
     
 import numeric
+
 from java.util import ArrayList
 from java.util import HashMap
-def make(net,name='Integrator',neurons=100,dimensions=1,tau_feedback=0.1,tau_input=0.01,scale=1):
+def make(net, name='Integrator', neurons=100, dimensions=1, tau_feedback=0.1, tau_input=0.01, scale=1):
     if (dimensions<8):
         integrator=net.make(name,neurons,dimensions)
     else:
@@ -54,3 +55,4 @@ def make(net,name='Integrator',neurons=100,dimensions=1,tau_feedback=0.1,tau_inp
     templateproj = net.network.getMetaData("templateProjections")
     templateproj.put(name, name)
 
+    integrator.addDecodedTermination('input', numeric.eye(dimensions)*tau_feedback*scale, tau_input, False)
