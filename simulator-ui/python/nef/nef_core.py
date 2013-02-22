@@ -1095,7 +1095,7 @@ class Network:
                 node=node.getNode(n)
             except:
                 if default is Exception:
-                    raise Exception('Could not find node:',original_name)
+                    raise StructuralException('Could not find node:%s'%original_name)
                 else:                            
                     return default
         try:
@@ -1108,7 +1108,7 @@ class Network:
                     node=node.getTermination(name)
                 except:
                     if default is Exception:
-                        raise Exception('Could not find node:',original_name)
+                        raise StructuralException('Could not find node:%s'%original_name)
                     else:                            
                         return default
         if require_origin:
@@ -1120,7 +1120,7 @@ class Network:
                     node=node.getOrigin('X')
                 else:
                     if default is Exception:
-                        raise Exception('Could not find origin:',original_name)
+                        raise StructuralException('Could not find origin:%s'%original_name)
                     else:
                         return default    
         return node
